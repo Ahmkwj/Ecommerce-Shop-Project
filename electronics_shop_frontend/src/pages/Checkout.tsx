@@ -5,7 +5,13 @@ import Layout from "../components/Layout";
 import { cartService } from "../services/cartService";
 import { orderService } from "../services/orderService";
 import { authService } from "../services/authService";
-import { showSuccess, showError, showInfo, showLoading, dismissToast } from "../utils/toast";
+import {
+  showSuccess,
+  showError,
+  showInfo,
+  showLoading,
+  dismissToast,
+} from "../utils/toast";
 
 export default function Checkout() {
   const navigate = useNavigate();
@@ -17,6 +23,11 @@ export default function Checkout() {
   const [total, setTotal] = useState(0);
   const [itemCount, setItemCount] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  // SPL VARIATION POINT: Available Payment Methods
+  const getAvailablePaymentMethods = (): string[] => {
+    return ["Credit Card", "Debit Card", "PayPal"];
+  };
 
   useEffect(() => {
     loadCartSummary();
@@ -83,7 +94,10 @@ export default function Checkout() {
 
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-sm p-8 space-y-8">
+            <form
+              onSubmit={handleSubmit}
+              className="bg-white rounded-2xl shadow-sm p-8 space-y-8"
+            >
               <div>
                 <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
                   <span className="w-8 h-8 bg-primary-600 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">
@@ -148,7 +162,8 @@ export default function Checkout() {
                   Payment Method
                 </h2>
                 <div className="grid gap-4">
-                  {["Credit Card", "Debit Card", "PayPal"].map((method) => (
+                  {/* SPL VARIATION POINT: Payment Methods */}
+                  {getAvailablePaymentMethods().map((method) => (
                     <label
                       key={method}
                       className={`flex items-center p-4 border-2 rounded-xl cursor-pointer transition-all ${

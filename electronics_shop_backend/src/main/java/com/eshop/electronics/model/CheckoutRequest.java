@@ -1,10 +1,12 @@
 package com.eshop.electronics.model;
 
+// SPL VARIATION POINT: Order Management Feature
 public class CheckoutRequest {
     private String userId;
     private String firstName;
     private String lastName;
     private String shippingAddress;
+    // SPL VARIATION POINT: Payment Methods - payment method field
     private String paymentMethod;
     private String notes;
 

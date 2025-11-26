@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.eshop.electronics.model.Wishlist;
 import com.eshop.electronics.repository.WishlistRepository;
 
+// SPL VARIATION POINT: Wishlist Feature
 @Service
 public class WishlistService {
 

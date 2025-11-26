@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import com.eshop.electronics.model.User;
 import com.eshop.electronics.service.UserService;
 
+// SPL VARIATION POINT: User Authentication Feature
 @RestController
 @RequestMapping("/users")
 public class UserController {

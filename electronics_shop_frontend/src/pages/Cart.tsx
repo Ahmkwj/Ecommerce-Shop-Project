@@ -158,7 +158,9 @@ export default function Cart() {
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Shopping Cart</h1>
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
+              Shopping Cart
+            </h1>
             <p className="text-gray-600 mt-1">
               {cartItems.length} {cartItems.length === 1 ? "item" : "items"} in
               your cart
@@ -343,6 +345,7 @@ export default function Cart() {
                   </div>
                 </div>
 
+                {/* SPL VARIATION POINT: Order Management Feature */}
                 <button
                   onClick={handleCheckout}
                   className="w-full py-3 bg-primary-600 text-white rounded-lg font-medium transition-all mb-3"

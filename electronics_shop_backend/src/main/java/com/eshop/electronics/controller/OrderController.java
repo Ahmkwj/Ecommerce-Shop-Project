@@ -10,6 +10,7 @@ import com.eshop.electronics.service.OrderService;
 
 import java.util.List;
 
+// SPL VARIATION POINT: Order Management Feature
 @RestController
 @RequestMapping("/orders")
 public class OrderController {

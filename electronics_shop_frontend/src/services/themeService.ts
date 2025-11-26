@@ -1,25 +1,27 @@
-// Theme Service for managing application themes
-// SPL VARIATION POINT: Theme selection (Light/Dark)
+// SPL VARIATION POINT: Theme Configuration
+// Import the appropriate theme config file for your variant
+// For dark theme variant: import from "./config/theme.dark"
+// For light theme variant: import from "./config/theme.light"
+
+import {
+  THEME_MODE,
+  initializeTheme,
+  canSwitchTheme,
+} from "../config/theme.light";
 
 export type Theme = "light" | "dark";
 
 class ThemeService {
-  private currentTheme: Theme = "light";
-  private readonly THEME_KEY = "app-theme";
+  private currentTheme: Theme = THEME_MODE as Theme;
+  private readonly canSwitch: boolean = canSwitchTheme;
 
   constructor() {
     this.loadTheme();
   }
 
-  // Load theme from localStorage or default to light
+  // Load theme (now fixed based on variant)
   loadTheme(): void {
-    const savedTheme = localStorage.getItem(this.THEME_KEY) as Theme;
-    if (savedTheme === "light" || savedTheme === "dark") {
-      this.currentTheme = savedTheme;
-    } else {
-      this.currentTheme = "light";
-    }
-    this.applyTheme(this.currentTheme);
+    initializeTheme();
   }
 
   // Get current theme
@@ -27,27 +29,19 @@ class ThemeService {
     return this.currentTheme;
   }
 
-  // Set and apply theme
+  // Theme switching disabled in single-theme variants
+  canSwitchTheme(): boolean {
+    return this.canSwitch;
+  }
+
+  // Dummy methods for compatibility (do nothing in single-theme mode)
   setTheme(theme: Theme): void {
-    this.currentTheme = theme;
-    localStorage.setItem(this.THEME_KEY, theme);
-    this.applyTheme(theme);
+    // No-op in single theme mode
   }
 
-  // Toggle between light and dark
   toggleTheme(): Theme {
-    const newTheme = this.currentTheme === "light" ? "dark" : "light";
-    this.setTheme(newTheme);
-    return newTheme;
-  }
-
-  // Apply theme to document
-  private applyTheme(theme: Theme): void {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    // No-op in single theme mode
+    return this.currentTheme;
   }
 }
 

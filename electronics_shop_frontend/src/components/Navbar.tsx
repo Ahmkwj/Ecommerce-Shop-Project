@@ -33,6 +33,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Check if theme switching is enabled for this variant
+  const canSwitchTheme = themeService.canSwitchTheme();
+
   const loadCartCount = async () => {
     const userId = authService.getCurrentUserId();
     if (userId) {
@@ -68,10 +71,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
+          {/* SPL VARIATION POINT: Shop Branding */}
           <Link
             to="/"
             className="flex items-center space-x-2 group transition-transform duration-200"
           >
+            {/* Electronics Shop Logo */}
             <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
               <svg
                 className="w-6 h-6 text-white"
@@ -93,6 +98,29 @@ export default function Navbar() {
                 Shop
               </span>
             </span>
+
+            {/* Toys Shop Logo (alternative) */}
+            {/* <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
+              <svg
+                className="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <span className="text-2xl font-bold text-gray-800 dark:text-gray-100">
+              Toy
+              <span className="text-primary-600 dark:text-primary-400">
+                World
+              </span>
+            </span> */}
           </Link>
 
           {/* Navigation Links */}
@@ -107,8 +135,10 @@ export default function Navbar() {
             >
               Products
             </Link>
+            {/* SPL VARIATION POINT: User Authentication - Authenticated Menu Items */}
             {username && (
               <>
+                {/* SPL VARIATION POINT: Order Management Feature */}
                 <Link
                   to="/orders"
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
@@ -119,6 +149,7 @@ export default function Navbar() {
                 >
                   Orders
                 </Link>
+                {/* SPL VARIATION POINT: Wishlist Feature */}
                 <Link
                   to="/wishlist"
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
@@ -135,47 +166,50 @@ export default function Navbar() {
 
           {/* Right Section */}
           <div className="flex items-center space-x-4">
-            {/* SPL VARIATION POINT: Theme Toggle Button */}
-            <button
-              onClick={handleThemeToggle}
-              className="p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
-              title={
-                isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"
-              }
-            >
-              {isDarkMode ? (
-                // Sun icon for light mode
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                  />
-                </svg>
-              ) : (
-                // Moon icon for dark mode
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                  />
-                </svg>
-              )}
-            </button>
+            {/* SPL VARIATION POINT: Theme Toggle Button - Remove this entire block for single-theme variants */}
+            {canSwitchTheme && (
+              <button
+                onClick={handleThemeToggle}
+                className="p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                title={
+                  isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"
+                }
+              >
+                {isDarkMode ? (
+                  // Sun icon for light mode
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                    />
+                  </svg>
+                ) : (
+                  // Moon icon for dark mode
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                    />
+                  </svg>
+                )}
+              </button>
+            )}
 
+            {/* SPL VARIATION POINT: User Authentication - Login/Logout UI */}
             {username ? (
               <>
                 <div className="hidden sm:flex items-center px-3 py-1.5 bg-gray-100 dark:bg-gray-700 rounded-lg">

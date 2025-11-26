@@ -3,6 +3,7 @@ package com.eshop.electronics.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+// SPL VARIATION POINT: User Authentication Feature
 @Document(collection = "users")
 public class User {
     @Id

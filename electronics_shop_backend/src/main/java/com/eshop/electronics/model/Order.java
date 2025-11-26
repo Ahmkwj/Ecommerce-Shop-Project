@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Date;
 import java.util.ArrayList;
 
+// SPL VARIATION POINT: Order Management Feature
 @Document(collection = "orders")
 public class Order {
     @Id

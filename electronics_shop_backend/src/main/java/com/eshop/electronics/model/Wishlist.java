@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 import java.util.List;
 
+// SPL VARIATION POINT: Wishlist Feature
 @Document(collection = "wishlists")
 public class Wishlist {
     @Id

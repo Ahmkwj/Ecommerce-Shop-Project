@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.eshop.electronics.model.User;
 import com.eshop.electronics.repository.UserRepository;
 
+// SPL VARIATION POINT: User Authentication Feature
 @Service
 public class UserService {
 

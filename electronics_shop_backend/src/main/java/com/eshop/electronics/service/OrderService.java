@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Date;
 import java.util.ArrayList;
 
+// SPL VARIATION POINT: Order Management Feature
 @Service
 public class OrderService {
 
@@ -77,6 +78,7 @@ public class OrderService {
         order.setFirstName(checkoutRequest.getFirstName());
         order.setLastName(checkoutRequest.getLastName());
         order.setShippingAddress(checkoutRequest.getShippingAddress());
+        // SPL VARIATION POINT: Payment Methods - stores selected payment method
         order.setPaymentMethod(checkoutRequest.getPaymentMethod());
         order.setNotes(checkoutRequest.getNotes());
 

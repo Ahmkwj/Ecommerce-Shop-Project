@@ -182,6 +182,7 @@ export default function ProductDetails() {
                   >
                     Add to Cart
                   </button>
+                  {/* SPL VARIATION POINT: Wishlist Feature */}
                   <button
                     onClick={handleToggleWishlist}
                     className="px-6 py-3 border border-gray-300 rounded-md text-2xl"

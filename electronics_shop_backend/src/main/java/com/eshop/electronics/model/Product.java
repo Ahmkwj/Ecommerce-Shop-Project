@@ -3,7 +3,10 @@ package com.eshop.electronics.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "products")
+// SPL VARIATION POINT: Product Catalog Type
+// For Electronics variant: collection = "electronics"
+// For Toys variant: collection = "toys"
+@Document(collection = "electronics")
 public class Product {
     @Id
     private String id;
@@ -17,7 +20,8 @@ public class Product {
     public Product() {
     }
 
-    public Product(String id, String name, String description, double price, String category, String imageUrl, int stock) {
+    public Product(String id, String name, String description, double price, String category, String imageUrl,
+            int stock) {
         this.id = id;
         this.name = name;
         this.description = description;

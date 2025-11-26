@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import com.eshop.electronics.model.Wishlist;
 import com.eshop.electronics.service.WishlistService;
 
+// SPL VARIATION POINT: Wishlist Feature
 @RestController
 @RequestMapping("/wishlist")
 public class WishlistController {

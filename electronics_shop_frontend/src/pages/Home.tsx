@@ -113,7 +113,10 @@ export default function Home() {
     }
   };
 
-  const handleToggleWishlist = async (productId: string, productName: string) => {
+  const handleToggleWishlist = async (
+    productId: string,
+    productName: string
+  ) => {
     const userId = authService.getCurrentUserId();
     if (!userId) {
       showError("Please login to manage wishlist");
@@ -140,6 +143,8 @@ export default function Home() {
     }
   };
 
+  // SPL VARIATION POINT: Product Catalog Categories
+  // Electronics variant categories
   const categories = [
     "All",
     "Laptops",
@@ -148,6 +153,16 @@ export default function Home() {
     "Tablets",
     "Headphones",
   ];
+
+  // Toys variant categories (alternative)
+  // const categories = [
+  //   "All",
+  //   "Action Figures",
+  //   "Dolls",
+  //   "Board Games",
+  //   "Puzzles",
+  //   "Educational",
+  // ];
 
   if (loading) {
     return (
@@ -166,13 +181,23 @@ export default function Home() {
     <Layout>
       <div className="space-y-8">
         {/* Hero Section */}
+        {/* SPL VARIATION POINT: Shop Branding */}
         <div className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl p-8 md:p-12 text-white shadow-lg">
+          {/* Electronics Shop Variant */}
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Welcome to ElectroShop
           </h1>
           <p className="text-lg md:text-xl text-primary-100 mb-6">
             Discover the latest electronics at unbeatable prices
           </p>
+
+          {/* Toys Shop Variant (alternative) */}
+          {/* <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Welcome to ToyWorld
+          </h1>
+          <p className="text-lg md:text-xl text-primary-100 mb-6">
+            Discover amazing toys for all ages at unbeatable prices
+          </p> */}
           <div className="flex gap-4">
             <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
               <p className="text-sm text-primary-100">Products</p>
@@ -269,7 +294,9 @@ export default function Home() {
             <h3 className="text-xl font-semibold text-gray-800 mb-2">
               No products found
             </h3>
-            <p className="text-gray-600">Try adjusting your search or filters</p>
+            <p className="text-gray-600">
+              Try adjusting your search or filters
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -288,8 +315,11 @@ export default function Home() {
                         "https://via.placeholder.com/300x200?text=No+Image";
                     }}
                   />
+                  {/* SPL VARIATION POINT: Wishlist Feature */}
                   <button
-                    onClick={() => handleToggleWishlist(product.id, product.name)}
+                    onClick={() =>
+                      handleToggleWishlist(product.id, product.name)
+                    }
                     className="absolute top-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md transition-all"
                   >
                     {wishlistIds.has(product.id) ? (
