@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-ElectronicsApplication<electronics>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.eshop.electronics.ElectronicsApplication",
+      "projectName": "electronics",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

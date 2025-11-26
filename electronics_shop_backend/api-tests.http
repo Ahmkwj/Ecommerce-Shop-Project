@@ -1,0 +1,260 @@
+###
+# Electronics Shop API Tests
+# Name: Ahmed Khawaja
+# Student ID: 60104808
+###
+
+### Base URL
+@baseUrl = http://localhost:8080
+
+### 1. Get all products
+GET {{baseUrl}}/products
+Content-Type: application/json
+
+###
+
+### 2. Get product by ID (iPhone 14)
+GET {{baseUrl}}/products/1
+Content-Type: application/json
+
+###
+
+### 3. Get product by ID (MacBook Pro)
+GET {{baseUrl}}/products/3
+Content-Type: application/json
+
+###
+
+### 4. Get product by ID (Not Found)
+GET {{baseUrl}}/products/999
+Content-Type: application/json
+
+###
+
+### 5. Get products by category - Smartphones
+GET {{baseUrl}}/products/category/Smartphones
+Content-Type: application/json
+
+###
+
+### 6. Get products by category - Laptops
+GET {{baseUrl}}/products/category/Laptops
+Content-Type: application/json
+
+###
+
+### 7. Get products by category - Audio
+GET {{baseUrl}}/products/category/Audio
+Content-Type: application/json
+
+###
+
+### 8. Get products by category - Tablets
+GET {{baseUrl}}/products/category/Tablets
+Content-Type: application/json
+
+###
+
+### 9. Get products sorted by price (ascending - low to high)
+GET {{baseUrl}}/products/sort/price/asc
+Content-Type: application/json
+
+###
+
+### 10. Get products sorted by price (descending - high to low)
+GET {{baseUrl}}/products/sort/price/desc
+Content-Type: application/json
+
+###
+
+### 11. Get cart for user (userId: user1)
+GET {{baseUrl}}/cart/user1
+Content-Type: application/json
+
+###
+
+### 12. Add item to cart (iPhone 14)
+POST {{baseUrl}}/cart/add
+Content-Type: application/json
+
+{
+  "userId": "user1",
+  "productId": "1",
+  "quantity": 2
+}
+
+###
+
+### 13. Add another item to cart (AirPods Pro)
+POST {{baseUrl}}/cart/add
+Content-Type: application/json
+
+{
+  "userId": "user1",
+  "productId": "6",
+  "quantity": 1
+}
+
+###
+
+### 14. Add item to another user's cart (MacBook Pro for user2)
+POST {{baseUrl}}/cart/add
+Content-Type: application/json
+
+{
+  "userId": "user2",
+  "productId": "3",
+  "quantity": 1
+}
+
+###
+
+### 15. Get cart for user1 (should show 2 items)
+GET {{baseUrl}}/cart/user1
+Content-Type: application/json
+
+###
+
+### 16. Update item quantity in cart
+PUT {{baseUrl}}/cart/update
+Content-Type: application/json
+
+{
+  "userId": "user1",
+  "productId": "1",
+  "quantity": 3
+}
+
+###
+
+### 17. Get cart for user1 (quantity should be updated)
+GET {{baseUrl}}/cart/user1
+Content-Type: application/json
+
+###
+
+### 18. Remove item from cart
+DELETE {{baseUrl}}/cart/remove/6?userId=user1
+Content-Type: application/json
+
+###
+
+### 19. Get cart for user1 (AirPods Pro should be removed)
+GET {{baseUrl}}/cart/user1
+Content-Type: application/json
+
+###
+
+### 20. Add items back to cart for order creation
+POST {{baseUrl}}/cart/add
+Content-Type: application/json
+
+{
+  "userId": "user1",
+  "productId": "1",
+  "quantity": 2
+}
+
+###
+
+### 21. Add another item
+POST {{baseUrl}}/cart/add
+Content-Type: application/json
+
+{
+  "userId": "user1",
+  "productId": "6",
+  "quantity": 1
+}
+
+###
+
+### 22. Create order from cart (user1)
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "userId": "user1"
+}
+
+###
+
+### 23. Create order from cart (user2)
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "userId": "user2"
+}
+
+###
+
+### 24. Get all orders
+GET {{baseUrl}}/orders
+Content-Type: application/json
+
+###
+
+### 25. Get orders by user ID (user1)
+GET {{baseUrl}}/orders/user/user1
+Content-Type: application/json
+
+###
+
+### 26. Get orders by user ID (user2)
+GET {{baseUrl}}/orders/user/user2
+Content-Type: application/json
+
+###
+
+### 27. Get order by ID (replace with actual order ID from previous POST response)
+# After creating an order above, copy the order ID and replace "ORDER_ID_HERE"
+GET {{baseUrl}}/orders/ORDER_ID_HERE
+Content-Type: application/json
+
+###
+
+### 28. Update order status to SHIPPED (replace with actual order ID)
+# After creating an order above, copy the order ID and replace "ORDER_ID_HERE"
+PUT {{baseUrl}}/orders/ORDER_ID_HERE/status/SHIPPED
+Content-Type: application/json
+
+###
+
+### 29. Update order status to DELIVERED (replace with actual order ID)
+# After creating an order above, copy the order ID and replace "ORDER_ID_HERE"
+PUT {{baseUrl}}/orders/ORDER_ID_HERE/status/DELIVERED
+Content-Type: application/json
+
+###
+
+### 30. Update order status to PENDING (replace with actual order ID)
+# After creating an order above, copy the order ID and replace "ORDER_ID_HERE"
+PUT {{baseUrl}}/orders/ORDER_ID_HERE/status/PENDING
+Content-Type: application/json
+
+###
+
+### 31. Update order status with invalid status (should fail)
+# After creating an order above, copy the order ID and replace "ORDER_ID_HERE"
+PUT {{baseUrl}}/orders/ORDER_ID_HERE/status/INVALID_STATUS
+Content-Type: application/json
+
+###
+
+### 32. Get order by ID that doesn't exist (should return null)
+GET {{baseUrl}}/orders/non-existent-order-id
+Content-Type: application/json
+
+###
+
+### 33. Clear cart for user1
+DELETE {{baseUrl}}/cart/clear/user1
+Content-Type: application/json
+
+###
+
+### 34. Get cart for user1 (should be empty)
+GET {{baseUrl}}/cart/user1
+Content-Type: application/json
+
