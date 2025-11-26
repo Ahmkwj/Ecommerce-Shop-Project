@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import Layout from '../components/Layout';
-import type { Product } from '../types';
-import { productService } from '../services/productService';
-import { cartService } from '../services/cartService';
-import { wishlistService } from '../services/wishlistService';
-import { authService } from '../services/authService';
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import Layout from "../components/Layout";
+import type { Product } from "../types";
+import { productService } from "../services/productService";
+import { cartService } from "../services/cartService";
+import { wishlistService } from "../services/wishlistService";
+import { authService } from "../services/authService";
 
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
@@ -28,7 +28,7 @@ export default function ProductDetails() {
       const data = await productService.getProductById(id);
       setProduct(data);
     } catch (error) {
-      console.error('Error loading product:', error);
+      console.error("Error loading product:", error);
     } finally {
       setLoading(false);
     }
@@ -41,7 +41,7 @@ export default function ProductDetails() {
         const inWishlist = await wishlistService.isInWishlist(userId, id);
         setIsInWishlist(inWishlist);
       } catch (error) {
-        console.error('Error checking wishlist:', error);
+        console.error("Error checking wishlist:", error);
       }
     }
   };
@@ -49,8 +49,8 @@ export default function ProductDetails() {
   const handleAddToCart = async () => {
     const userId = authService.getCurrentUserId();
     if (!userId) {
-      alert('Please login to add items to cart');
-      navigate('/login');
+      alert("Please login to add items to cart");
+      navigate("/login");
       return;
     }
 
@@ -58,19 +58,19 @@ export default function ProductDetails() {
 
     try {
       await cartService.addToCart({ userId, productId: id, quantity });
-      alert('Added to cart!');
-      navigate('/cart');
+      alert("Added to cart!");
+      navigate("/cart");
     } catch (error) {
-      console.error('Error adding to cart:', error);
-      alert('Failed to add to cart');
+      console.error("Error adding to cart:", error);
+      alert("Failed to add to cart");
     }
   };
 
   const handleToggleWishlist = async () => {
     const userId = authService.getCurrentUserId();
     if (!userId) {
-      alert('Please login to add items to wishlist');
-      navigate('/login');
+      alert("Please login to add items to wishlist");
+      navigate("/login");
       return;
     }
 
@@ -85,7 +85,7 @@ export default function ProductDetails() {
         setIsInWishlist(true);
       }
     } catch (error) {
-      console.error('Error toggling wishlist:', error);
+      console.error("Error toggling wishlist:", error);
     }
   };
 
@@ -131,8 +131,12 @@ export default function ProductDetails() {
 
             <div className="space-y-6">
               <div>
-                <h1 className="text-3xl font-bold text-gray-800 mb-2">{product.name}</h1>
-                <p className="text-sm text-gray-500 mb-4">Category: {product.category}</p>
+                <h1 className="text-3xl font-bold text-gray-800 mb-2">
+                  {product.name}
+                </h1>
+                <p className="text-sm text-gray-500 mb-4">
+                  Category: {product.category}
+                </p>
                 <p className="text-gray-600">{product.description}</p>
               </div>
 
@@ -141,8 +145,14 @@ export default function ProductDetails() {
                   <span className="text-3xl font-bold text-primary-600">
                     ${product.price.toFixed(2)}
                   </span>
-                  <span className={`text-sm ${product.stock > 0 ? 'text-green-600' : 'text-red-600'}`}>
-                    {product.stock > 0 ? `In Stock (${product.stock})` : 'Out of Stock'}
+                  <span
+                    className={`text-sm ${
+                      product.stock > 0 ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    {product.stock > 0
+                      ? `In Stock (${product.stock})`
+                      : "Out of Stock"}
                   </span>
                 </div>
               </div>
@@ -157,8 +167,10 @@ export default function ProductDetails() {
                     min="1"
                     max={product.stock}
                     value={quantity}
-                    onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                    className="w-24 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    onChange={(e) =>
+                      setQuantity(Math.max(1, parseInt(e.target.value) || 1))
+                    }
+                    className="w-24 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 text-black dark:text-black"
                   />
                 </div>
 
@@ -174,7 +186,7 @@ export default function ProductDetails() {
                     onClick={handleToggleWishlist}
                     className="px-6 py-3 border border-gray-300 rounded-md text-2xl"
                   >
-                    {isInWishlist ? '❤️' : '🤍'}
+                    {isInWishlist ? "❤️" : "🤍"}
                   </button>
                 </div>
               </div>
@@ -185,4 +197,3 @@ export default function ProductDetails() {
     </Layout>
   );
 }
-
