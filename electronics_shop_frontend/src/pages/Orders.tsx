@@ -76,7 +76,7 @@ export default function Orders() {
   return (
     <Layout>
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">My Orders</h1>
+        <h1 className="text-3xl font-bold text-gray-800 mb-6 dark:text-white">My Orders</h1>
 
         {orders.length === 0 ? (
           <div className="bg-white rounded-lg shadow-md p-12 text-center">

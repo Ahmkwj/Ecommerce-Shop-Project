@@ -92,7 +92,7 @@ export default function Wishlist() {
     <Layout>
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-800">My Wishlist</h1>
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-white">My Wishlist</h1>
           {products.length > 0 && (
             <button
               onClick={handleClearWishlist}

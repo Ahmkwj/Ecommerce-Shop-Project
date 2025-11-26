@@ -158,7 +158,7 @@ export default function Cart() {
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800">Shopping Cart</h1>
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Shopping Cart</h1>
             <p className="text-gray-600 mt-1">
               {cartItems.length} {cartItems.length === 1 ? "item" : "items"} in
               your cart
@@ -167,7 +167,7 @@ export default function Cart() {
           {cartItems.length > 0 && (
             <button
               onClick={handleClearCart}
-              className="px-4 py-2 text-red-600 border border-red-300 rounded-lg text-sm font-medium transition-colors"
+              className="px-4 py-2 text-red-600 text-sm font-medium transition-colors"
             >
               Clear Cart
             </button>
