@@ -11,31 +11,37 @@ This guide will walk you through creating an E-Shop Software Product Line (SPL) 
 Your E-Shop has **6 variability points** that can be mixed and matched:
 
 ### 1. Order Management (Optional - Include or Exclude)
+
 **What it does:** Allows users to place orders, view order history, track shipments
 **Include when:** You want a full e-commerce shop
 **Exclude when:** You want just a product catalog/browser
 
 ### 2. User Authentication (Optional - Include or Exclude)
+
 **What it does:** Login/register system, user accounts, protected pages
 **Include when:** You need user accounts and personalization
 **Exclude when:** You want a simple guest-only browse experience
 
 ### 3. Wishlist (Optional - Include or Exclude)
+
 **What it does:** Users can save favorite products
 **Include when:** You want enhanced user engagement
 **Exclude when:** You want a minimal interface
 
 ### 4. Payment Methods (Alternative - Choose One or More)
+
 **Options:** Credit Card / Debit Card / PayPal
 **What it does:** Determines which payment options show at checkout
 **Note:** Only relevant if Order Management is included
 
 ### 5. Theme (Alternative - Choose One)
+
 **Options:** Light Theme / Dark Theme
 **What it does:** Sets the visual appearance of the entire app
 **How it works:** Simple import change in one file
 
 ### 6. Product Catalog (Alternative - Choose One)
+
 **Options:** Electronics / Toys
 **What it does:** Determines shop type, categories, branding, database collection
 **MongoDB Collections:** "electronics" or "toys"
@@ -105,6 +111,7 @@ Now add child features to the root:
 29. Repeat: Add `Toys`
 
 **Your Feature Model Tree Should Look Like:**
+
 ```
 E-Shop Application (root)
 ├── Product Management (mandatory)
@@ -327,20 +334,10 @@ Markers tell Mobioos Forge which files/code belong to which feature.
 1. In Feature Model, click on **`Electronics`** feature
 2. Click **"Add Marker"** → **"Add Alternative Marker"**
 
-**Marker 1: Database Collection**
-3. Navigate to: `electronics_shop_backend/src/main/java/com/eshop/electronics/model/Product.java`
-4. Find line **9**: `@Document(collection = "electronics")`
-5. Select that line
-6. Keep it as: `@Document(collection = "electronics")`
-7. Click **"Mark"**
+**Marker 1: Database Collection** 3. Navigate to: `electronics_shop_backend/src/main/java/com/eshop/electronics/model/Product.java` 4. Find line **9**: `@Document(collection = "electronics")` 5. Select that line 6. Keep it as: `@Document(collection = "electronics")` 7. Click **"Mark"**
 
-**Marker 2: Categories**
-8. Click **"Add Alternative Marker"**
-9. Navigate to: `electronics_shop_frontend/src/pages/Home.tsx`
-10. Find lines **145-153** (the categories array)
-11. Select those lines
-12. Keep the electronics categories:
-    ```typescript
+**Marker 2: Categories** 8. Click **"Add Alternative Marker"** 9. Navigate to: `electronics_shop_frontend/src/pages/Home.tsx` 10. Find lines **145-153** (the categories array) 11. Select those lines 12. Keep the electronics categories:
+`typescript
     const categories = [
       "All",
       "Laptops",
@@ -349,46 +346,29 @@ Markers tell Mobioos Forge which files/code belong to which feature.
       "Tablets",
       "Headphones",
     ];
-    ```
-13. Click **"Mark"**
+    ` 13. Click **"Mark"**
 
-**Marker 3: Shop Branding**
-14. Click **"Add Alternative Marker"**
-15. Same file (`Home.tsx`), find lines **172-178** (the hero section title and description)
-16. Select those lines
-17. Keep:
-    ```typescript
+**Marker 3: Shop Branding** 14. Click **"Add Alternative Marker"** 15. Same file (`Home.tsx`), find lines **172-178** (the hero section title and description) 16. Select those lines 17. Keep:
+`typescript
     <h1 className="text-4xl md:text-5xl font-bold mb-4">
       Welcome to ElectroShop
     </h1>
     <p className="text-lg md:text-xl text-primary-100 mb-6">
       Discover the latest electronics at unbeatable prices
     </p>
-    ```
-18. Click **"Mark"**
+    ` 18. Click **"Mark"**
 
-**Marker 4: Navbar Logo**
-19. Click **"Add Alternative Marker"**
-20. Navigate to: `electronics_shop_frontend/src/components/Navbar.tsx`
-21. Find lines **77-98** (logo and shop name)
-22. Select those lines (keep the electronics version, the uncommented one)
-23. Click **"Mark"**
+**Marker 4: Navbar Logo** 19. Click **"Add Alternative Marker"** 20. Navigate to: `electronics_shop_frontend/src/components/Navbar.tsx` 21. Find lines **77-98** (logo and shop name) 22. Select those lines (keep the electronics version, the uncommented one) 23. Click **"Mark"**
 
 #### Toys Variant
 
 24. In Feature Model, click on **`Toys`** feature
 25. Click **"Add Marker"** → **"Add Alternative Marker"**
 
-**Marker 1: Database Collection**
-26. Navigate to: `Product.java`, line 9
-27. Replace with: `@Document(collection = "toys")`
-28. Click **"Mark"**
+**Marker 1: Database Collection** 26. Navigate to: `Product.java`, line 9 27. Replace with: `@Document(collection = "toys")` 28. Click **"Mark"**
 
-**Marker 2: Categories**
-29. Click **"Add Alternative Marker"**
-30. Navigate to: `Home.tsx`, lines 145-153
-31. Replace with toys categories:
-    ```typescript
+**Marker 2: Categories** 29. Click **"Add Alternative Marker"** 30. Navigate to: `Home.tsx`, lines 145-153 31. Replace with toys categories:
+`typescript
     const categories = [
       "All",
       "Action Figures",
@@ -397,28 +377,19 @@ Markers tell Mobioos Forge which files/code belong to which feature.
       "Puzzles",
       "Educational",
     ];
-    ```
-32. Click **"Mark"**
+    ` 32. Click **"Mark"**
 
-**Marker 3: Shop Branding**
-33. Click **"Add Alternative Marker"**
-34. Same file, lines 172-178
-35. Replace with:
-    ```typescript
+**Marker 3: Shop Branding** 33. Click **"Add Alternative Marker"** 34. Same file, lines 172-178 35. Replace with:
+`typescript
     <h1 className="text-4xl md:text-5xl font-bold mb-4">
       Welcome to ToyWorld
     </h1>
     <p className="text-lg md:text-xl text-primary-100 mb-6">
       Discover amazing toys for all ages at unbeatable prices
     </p>
-    ```
-36. Click **"Mark"**
+    ` 36. Click **"Mark"**
 
-**Marker 4: Navbar Logo**
-37. Click **"Add Alternative Marker"**
-38. Navigate to: `Navbar.tsx`, find the commented toys logo section (around lines 100-130)
-39. Select and uncomment the toys logo section
-40. Click **"Mark"**
+**Marker 4: Navbar Logo** 37. Click **"Add Alternative Marker"** 38. Navigate to: `Navbar.tsx`, find the commented toys logo section (around lines 100-130) 39. Select and uncomment the toys logo section 40. Click **"Mark"**
 
 41. Click **"Save Markers"**
 
@@ -486,40 +457,87 @@ Now that all markers are set, you can generate different shop variants!
 
 ### STEP 10: Test Your Variants
 
-For each generated variant:
+For each generated variant, you can start it with ONE COMMAND using Docker!
 
-#### Backend Testing
+#### Prerequisites (One-time Setup)
 
-1. Navigate to the variant folder: `generated_variants/[variant-name]/electronics_shop_backend/`
-2. Open terminal in that folder
-3. Run:
+1. Install **Docker Desktop** from https://www.docker.com/products/docker-desktop
+2. Start Docker Desktop
+3. That's it! No need to install Node.js, Java, or Maven.
+
+#### Starting a Variant
+
+**On Windows:**
+
+1. Navigate to variant folder: `generated_variants/[variant-name]/`
+2. Double-click: `start.bat`
+3. Wait 3-5 minutes (first run only)
+4. Done! Application is running.
+
+**On Mac/Linux:**
+
+1. Navigate to variant folder: `generated_variants/[variant-name]/`
+2. Open terminal and run:
    ```bash
-   mvn clean install
-   mvn spring-boot:run
+   ./start.sh
    ```
-4. Backend should start on `http://localhost:8080`
+3. Wait 3-5 minutes (first run only)
+4. Done! Application is running.
 
-#### Frontend Testing
+**What the script does:**
 
-5. Open another terminal
-6. Navigate to: `generated_variants/[variant-name]/electronics_shop_frontend/`
-7. Run:
-   ```bash
-   npm install
-   npm run dev
-   ```
-8. Frontend should open on `http://localhost:5173`
+- ✓ Checks Docker is running
+- ✓ Builds backend container (Java + Spring Boot)
+- ✓ Builds frontend container (React + Nginx)
+- ✓ Starts both containers
+- ✓ Shows you the URLs
+
+#### Access the Application
+
+Once containers are running:
+
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:8080
 
 #### Verify Features
 
-9. Open browser to `http://localhost:5173`
-10. Check:
-    - Theme (light or dark)
-    - Shop name and categories (Electronics or Toys)
-    - Login/Register buttons (present or absent based on auth feature)
-    - Wishlist heart icons (present or absent)
-    - Can you checkout? (if Order Management included)
-    - Which payment methods appear? (if orders included)
+Open browser to `http://localhost:3000` and check:
+
+- Theme (light or dark)
+- Shop name and categories (Electronics or Toys)
+- Login/Register buttons (present or absent based on auth feature)
+- Wishlist heart icons (present or absent)
+- Can you checkout? (if Order Management included)
+- Which payment methods appear? (if orders included)
+
+#### Stopping the Variant
+
+**Windows:** Double-click `stop.bat`
+**Mac/Linux:** Run `./stop.sh`
+
+Or use:
+
+```bash
+docker-compose down
+```
+
+#### Viewing Logs
+
+To see what's happening:
+
+```bash
+docker-compose logs -f
+```
+
+#### Rebuilding After Changes
+
+If you modify code:
+
+```bash
+docker-compose up --build -d
+```
+
+Or just run `start.bat` / `start.sh` again (rebuilds automatically).
 
 ---
 
@@ -527,29 +545,29 @@ For each generated variant:
 
 ### Feature Selection Guide
 
-| Feature | When to Include | When to Exclude |
-|---------|----------------|-----------------|
-| Order Management | Full e-commerce shop | Product catalog only |
-| User Authentication | Need user accounts | Guest-only browsing |
-| Wishlist | Enhanced engagement | Minimal interface |
-| Credit Card | Standard payment | Not doing payments |
-| Debit Card | More payment options | Keep it simple |
-| PayPal | International customers | Limited payment options |
-| Light Theme | Professional look | Prefer dark |
-| Dark Theme | Modern look | Prefer light |
-| Electronics | Selling tech products | Selling toys |
-| Toys | Selling toys | Selling electronics |
+| Feature             | When to Include         | When to Exclude         |
+| ------------------- | ----------------------- | ----------------------- |
+| Order Management    | Full e-commerce shop    | Product catalog only    |
+| User Authentication | Need user accounts      | Guest-only browsing     |
+| Wishlist            | Enhanced engagement     | Minimal interface       |
+| Credit Card         | Standard payment        | Not doing payments      |
+| Debit Card          | More payment options    | Keep it simple          |
+| PayPal              | International customers | Limited payment options |
+| Light Theme         | Professional look       | Prefer dark             |
+| Dark Theme          | Modern look             | Prefer light            |
+| Electronics         | Selling tech products   | Selling toys            |
+| Toys                | Selling toys            | Selling electronics     |
 
 ### File Locations Quick Reference
 
-| Feature | Backend Files | Frontend Files |
-|---------|--------------|----------------|
-| Orders | OrderController, OrderService, Order model | Orders.tsx, Checkout.tsx, OrderConfirmation.tsx |
-| Auth | UserController, UserService, User model | Login.tsx, Register.tsx, authService.ts |
-| Wishlist | WishlistController, WishlistService, Wishlist model | Wishlist.tsx, wishlistService.ts |
-| Payments | CheckoutRequest model | Checkout.tsx (getAvailablePaymentMethods function) |
-| Theme | - | themeService.ts (import line) |
-| Catalog | Product.java (@Document line) | Home.tsx (categories + branding), Navbar.tsx (logo) |
+| Feature  | Backend Files                                       | Frontend Files                                      |
+| -------- | --------------------------------------------------- | --------------------------------------------------- |
+| Orders   | OrderController, OrderService, Order model          | Orders.tsx, Checkout.tsx, OrderConfirmation.tsx     |
+| Auth     | UserController, UserService, User model             | Login.tsx, Register.tsx, authService.ts             |
+| Wishlist | WishlistController, WishlistService, Wishlist model | Wishlist.tsx, wishlistService.ts                    |
+| Payments | CheckoutRequest model                               | Checkout.tsx (getAvailablePaymentMethods function)  |
+| Theme    | -                                                   | themeService.ts (import line)                       |
+| Catalog  | Product.java (@Document line)                       | Home.tsx (categories + branding), Navbar.tsx (logo) |
 
 ### MongoDB Collections
 
@@ -563,18 +581,23 @@ Make sure your MongoDB has data in the appropriate collection for your variant!
 ## Part 4: Common Issues and Solutions
 
 ### Issue 1: Variant doesn't compile
+
 **Solution:** Check that all imports are correct. If you excluded a feature, make sure no other files are trying to import from it.
 
 ### Issue 2: Theme not working
+
 **Solution:** Verify the import in `themeService.ts` is pointing to the correct config file (theme.light or theme.dark).
 
 ### Issue 3: No products showing
+
 **Solution:** Check MongoDB - make sure you have data in the correct collection (electronics or toys).
 
 ### Issue 4: Routes not working
+
 **Solution:** Check `App.tsx` - make sure routes for excluded features are actually removed in the generated variant.
 
 ### Issue 5: Payment methods not showing
+
 **Solution:** Verify `getAvailablePaymentMethods()` in `Checkout.tsx` returns the correct array for your variant.
 
 ---
@@ -584,16 +607,20 @@ Make sure your MongoDB has data in the appropriate collection for your variant!
 Here are some useful variant combinations:
 
 1. **Premium Electronics Store**
+
    - All features enabled, all payments, light theme, electronics
 
 2. **Budget Toys Shop**
+
    - Orders + Auth, credit card only, dark theme, toys
 
 3. **Electronics Showcase**
+
    - No orders, no auth, no wishlist, light theme, electronics
    - Perfect for displaying products without selling
 
 4. **Kids Toys Store**
+
    - Orders + Auth + Wishlist, credit card + PayPal, light theme, toys
 
 5. **Quick Browse Electronics**
@@ -602,15 +629,78 @@ Here are some useful variant combinations:
 
 ---
 
+## Part 6: Docker Setup (Already Done!)
+
+Your project includes Docker configuration for easy deployment:
+
+### Files Included
+
+- `docker-compose.yml` - Orchestrates both frontend and backend
+- `start.sh` / `start.bat` - One-command startup scripts
+- `stop.sh` / `stop.bat` - Stop scripts
+- `electronics_shop_backend/Dockerfile` - Backend container config
+- `electronics_shop_frontend/Dockerfile` - Frontend container config
+- `README_DOCKER.md` - Detailed Docker documentation
+
+### How It Works
+
+1. **Backend Container:**
+
+   - Uses Maven to build Spring Boot JAR
+   - Runs on Java 17
+   - Exposes port 8080
+   - Connects to MongoDB Atlas (cloud)
+
+2. **Frontend Container:**
+   - Builds React app with Vite
+   - Serves with Nginx
+   - Exposes port 80 (mapped to 3000)
+   - Production-optimized build
+
+### Mobioos Forge Integration
+
+When you generate a variant, Mobioos Forge will copy all Docker files to the variant folder. This means:
+
+✓ Each variant has its own Docker setup
+✓ Each variant can run independently
+✓ No conflicts between variants
+✓ Easy to demonstrate different variants
+
+### Testing Multiple Variants
+
+**Variant 1:**
+
+```bash
+cd generated_variants/Electronics-Full-Light
+./start.sh  # Windows: start.bat
+# Access at http://localhost:3000
+```
+
+**Variant 2 (after stopping Variant 1):**
+
+```bash
+docker-compose down
+cd ../Toys-Simple-Dark
+./start.sh  # Windows: start.bat
+# Access at http://localhost:3000
+```
+
+---
+
 ## Congratulations!
 
 You now know how to create SPL variants using Mobioos Forge. You can generate as many variants as you need by mixing and matching features!
 
 **Next Steps:**
+
 1. Create FlagSmith project (separate implementation with runtime flags)
 2. Write documentation (max 5 pages) explaining your feature model
 3. Record video demonstration showing different variants
 4. Prepare presentation slides
 
-**Remember:** Each variant is a complete, independent application. Test thoroughly before deploying!
+**Remember:**
 
+- Each variant is a complete, independent application
+- Use Docker for easy testing (just run `start.bat` or `./start.sh`)
+- Test thoroughly before deploying
+- See `README_DOCKER.md` for detailed Docker instructions
