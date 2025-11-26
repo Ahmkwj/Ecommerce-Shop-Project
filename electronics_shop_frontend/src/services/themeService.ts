@@ -35,7 +35,7 @@ class ThemeService {
   }
 
   // Dummy methods for compatibility (do nothing in single-theme mode)
-  setTheme(theme: Theme): void {
+  setTheme(_theme: Theme): void {
     // No-op in single theme mode
   }
 

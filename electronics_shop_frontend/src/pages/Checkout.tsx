@@ -24,9 +24,23 @@ export default function Checkout() {
   const [itemCount, setItemCount] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  // SPL VARIATION POINT: Available Payment Methods
+  // SPL VARIATION: Payment Methods
+  const paymentFeatures = {
+    creditCard: true,
+    debitCard: true,
+    paypal: true,
+  };
+
+  const paymentLabels: Record<string, string> = {
+    creditCard: "Credit Card",
+    debitCard: "Debit Card",
+    paypal: "PayPal",
+  };
+
   const getAvailablePaymentMethods = (): string[] => {
-    return ["Credit Card", "Debit Card", "PayPal"];
+    return Object.entries(paymentFeatures)
+      .filter(([_, enabled]) => enabled)
+      .map(([key]) => paymentLabels[key]);
   };
 
   useEffect(() => {
