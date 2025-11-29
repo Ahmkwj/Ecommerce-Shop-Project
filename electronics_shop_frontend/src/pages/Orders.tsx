@@ -23,7 +23,6 @@ export default function Orders() {
 
     try {
       const data = await orderService.getOrdersByUser(userId);
-      // Sort by timestamp descending (newest first)
       const sortedOrders = data.sort((a, b) => 
         new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
       );

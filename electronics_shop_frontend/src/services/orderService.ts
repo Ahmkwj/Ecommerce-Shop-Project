@@ -1,17 +1,17 @@
-import type { Order, CheckoutData } from '../types';
-import { apiGet, apiPost, apiPut } from './api';
+import type { Order, CheckoutData } from "../types";
+import { apiGet, apiPost, apiPut } from "./api";
 
 export const orderService = {
   async createOrder(userId: string): Promise<Order> {
-    return apiPost<Order>('/orders', { userId });
+    return apiPost<Order>("/orders", { userId });
   },
 
   async checkout(checkoutData: CheckoutData): Promise<Order> {
-    return apiPost<Order>('/orders/checkout', checkoutData);
+    return apiPost<Order>("/orders/checkout", checkoutData);
   },
 
   async getAllOrders(): Promise<Order[]> {
-    return apiGet<Order[]>('/orders');
+    return apiGet<Order[]>("/orders");
   },
 
   async getOrderById(orderId: string): Promise<Order> {
@@ -32,6 +32,5 @@ export const orderService = {
 
   async cancelOrder(orderId: string): Promise<Order> {
     return apiPut<Order>(`/orders/${orderId}/cancel`);
-  }
+  },
 };
-

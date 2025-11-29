@@ -1,71 +1,56 @@
 package com.eshop.electronics.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import com.eshop.electronics.model.Product;
-import com.eshop.electronics.repository.ProductRepository;
 
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
 
     @Autowired
-    private ProductRepository productRepository;
+    private MongoTemplate mongoTemplate;
+
+    private String COLLECTION = "toys";
+    private String COLLECTION = "electronics";
 
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
-    }
-
-    public Product getProductById(String id) {
-        if (productRepository.findById(id).isPresent()) {
-            return productRepository.findById(id).get();
-        } else {
-            return null;
-        }
+        return mongoTemplate.findAll(Product.class, COLLECTION);
     }
 
     public List<Product> getProductsByCategory(String category) {
-        return productRepository.findByCategory(category);
+        return getAllProducts().stream()
+                .filter(p -> p.getCategory().equals(category))
+                .collect(Collectors.toList());
     }
 
     public List<Product> searchProductsByName(String name) {
-        return productRepository.findByNameContainingIgnoreCase(name);
+        return getAllProducts().stream()
+                .filter(p -> p.getName().toLowerCase().contains(name.toLowerCase()))
+                .collect(Collectors.toList());
     }
 
     public List<Product> getProductsSortedByPriceAsc() {
-        List<Product> products = productRepository.findAll();
-        List<Product> sortedProducts = new ArrayList<Product>(products);
-
-        for (int i = 0; i < sortedProducts.size(); i++) {
-            for (int j = i + 1; j < sortedProducts.size(); j++) {
-                if (sortedProducts.get(i).getPrice() > sortedProducts.get(j).getPrice()) {
-                    Product temp = sortedProducts.get(i);
-                    sortedProducts.set(i, sortedProducts.get(j));
-                    sortedProducts.set(j, temp);
-                }
-            }
-        }
-
-        return sortedProducts;
+        return getAllProducts().stream()
+                .sorted(Comparator.comparingDouble(Product::getPrice))
+                .collect(Collectors.toList());
     }
 
     public List<Product> getProductsSortedByPriceDesc() {
-        List<Product> products = productRepository.findAll();
-        List<Product> sortedProducts = new ArrayList<Product>(products);
+        return getAllProducts().stream()
+                .sorted(Comparator.comparingDouble(Product::getPrice).reversed())
+                .collect(Collectors.toList());
+    }
 
-        for (Product product : sortedProducts) {
-            for (Product product2 : sortedProducts) {
-                if (product.getPrice() < product2.getPrice()) {
-                    Product temp = product;
-                    product = product2;
-                    product2 = temp;
-                }
-            }
-        }
-
-        return sortedProducts;
+    public Product getProductById(String id) {
+        return getAllProducts().stream()
+                .filter(p -> p.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 }

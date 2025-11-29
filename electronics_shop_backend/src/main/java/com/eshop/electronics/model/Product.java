@@ -4,9 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 // SPL VARIATION POINT: Product Catalog Type
-// For Electronics variant: collection = "electronics"
-// For Toys variant: collection = "toys"
-@Document(collection = "electronics")
+
+@Document
 public class Product {
     @Id
     private String id;

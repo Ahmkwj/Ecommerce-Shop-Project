@@ -1,133 +1,228 @@
-# Electronics Shop Frontend
+# E-Commerce Frontend (React)
 
-A modern e-commerce frontend built with React, TypeScript, Vite, and Tailwind CSS.
+Modern e-commerce frontend built with React, TypeScript, and Tailwind CSS.
 
-## Features
+## Technology Stack
 
-- **User Authentication**: Register and login functionality
-- **Product Browsing**: View all products with search, filter by category, and sort by price
-- **Product Details**: Detailed product information page
-- **Shopping Cart**: Add/remove items, update quantities, view cart total
-- **Wishlist**: Save favorite products for later
-- **Checkout**: Complete order with shipping information and payment method
-- **Order History**: View past orders and their status
-- **Order Management**: Cancel pending orders
-
-## Tech Stack
-
-- **React 18** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
-- **React Router** - Client-side routing
-- **Tailwind CSS** - Utility-first CSS framework
-
-## Prerequisites
-
-- Node.js (v16 or higher)
-- npm or yarn
-- Backend API running on `http://localhost:8080`
-
-## Installation
-
-1. Install dependencies:
-```bash
-npm install
-```
-
-2. Start the development server:
-```bash
-npm run dev
-```
-
-3. Open your browser and navigate to `http://localhost:5173`
-
-## Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+- React 18
+- TypeScript
+- Tailwind CSS
+- Vite
+- React Router v6
 
 ## Project Structure
 
 ```
 src/
-├── components/          # Reusable components
+├── components/              # Reusable components
 │   ├── Layout.tsx
 │   ├── Navbar.tsx
 │   └── ProtectedRoute.tsx
-├── pages/              # Page components
+├── pages/                   # Page components
 │   ├── Home.tsx
-│   ├── Login.tsx
-│   ├── Register.tsx
 │   ├── ProductDetails.tsx
 │   ├── Cart.tsx
 │   ├── Checkout.tsx
-│   ├── OrderConfirmation.tsx
 │   ├── Orders.tsx
-│   └── Wishlist.tsx
-├── services/           # API service layer
+│   ├── Login.tsx
+│   ├── Register.tsx
+│   ├── Wishlist.tsx
+│   └── OrderConfirmation.tsx
+├── services/                # API services
 │   ├── api.ts
-│   ├── authService.ts
 │   ├── productService.ts
 │   ├── cartService.ts
 │   ├── orderService.ts
-│   └── wishlistService.ts
-├── types/             # TypeScript type definitions
+│   ├── userService.ts
+│   ├── wishlistService.ts
+│   └── themeService.ts
+├── types/                   # TypeScript types
 │   └── index.ts
-├── App.tsx            # Main app component with routing
-├── main.tsx           # App entry point
-└── index.css          # Global styles with Tailwind
+├── utils/                   # Utility functions
+│   └── toast.ts
+├── config/                  # Configuration
+│   └── theme.dark.ts
+├── App.tsx                  # Main app component
+├── main.tsx                 # Entry point
+└── index.css                # Global styles
 ```
 
-## Features Overview
+## Features
 
-### Authentication
-- User registration with username and password
-- Login with credentials stored in localStorage
-- Protected routes that require authentication
+- Product browsing with search and filters
+- Category-based filtering
+- Price sorting
+- Shopping cart management
+- User authentication
+- Order management
+- Wishlist functionality
+- Dark mode support
+- Responsive design
+- Toast notifications
 
-### Product Management
-- Browse all products
-- Search products by name
-- Filter by category (Laptops, Smartphones, Accessories, etc.)
-- Sort by price (ascending/descending)
-- View detailed product information
+## Development
 
-### Shopping Experience
-- Add products to cart with quantity selection
-- Update item quantities in cart
-- Remove items from cart
-- View cart total and item count
-- Add/remove products from wishlist
+### Install Dependencies
 
-### Checkout & Orders
-- Complete checkout with shipping information
-- Select payment method (Credit Card, Debit Card, PayPal)
-- Add order notes
-- View order confirmation
-- Track order history
-- Cancel pending orders
+```bash
+npm install
+```
 
-## Design Philosophy
+### Start Development Server
 
-- **Clean & Simple**: Minimal design without unnecessary decorations
-- **User-Friendly**: Intuitive navigation and clear call-to-actions
-- **Responsive**: Works on desktop, tablet, and mobile devices
-- **Accessible**: Semantic HTML and proper ARIA labels
+```bash
+npm run dev
+```
 
-## API Integration
+Application will be available at http://localhost:5173
 
-The frontend communicates with the backend API running on `http://localhost:8080`. All API calls are handled through service layers in the `services/` directory.
+### Build for Production
 
-Make sure the backend is running before starting the frontend.
+```bash
+npm run build
+```
 
-## Notes
+### Preview Production Build
 
-- This is a learning project - authentication uses simple localStorage
-- No actual payment processing is implemented
-- Passwords are stored as plain text in the backend (not for production use)
+```bash
+npm run preview
+```
 
-## License
+### Lint Code
 
-This project is for educational purposes.
+```bash
+npm run lint
+```
+
+## Docker
+
+### Build Image
+
+```bash
+docker build -t eshop-frontend .
+```
+
+### Run Container
+
+```bash
+docker run -p 3000:80 eshop-frontend
+```
+
+## Configuration
+
+### API Base URL
+
+Edit `src/services/api.ts`:
+
+```typescript
+const API_BASE_URL = "http://localhost:8080";
+```
+
+### Theme Configuration
+
+Dark mode can be enabled by uncommenting the import in `src/main.tsx`:
+
+```typescript
+// Uncomment to enable dark theme
+// import './config/theme.dark'
+```
+
+## Routes
+
+- `/` - Home page (product listing)
+- `/products/:id` - Product details
+- `/cart` - Shopping cart
+- `/checkout` - Checkout page
+- `/orders` - Order history
+- `/order-confirmation/:orderId` - Order confirmation
+- `/wishlist` - Wishlist
+- `/login` - Login page
+- `/register` - Registration page
+
+## Components
+
+### Layout
+Wrapper component with navigation and footer.
+
+### Navbar
+Navigation bar with search, cart, and user menu.
+
+### ProtectedRoute
+Route guard for authenticated pages.
+
+## Services
+
+### productService
+Handles all product-related API calls.
+
+### cartService
+Manages shopping cart operations.
+
+### orderService
+Handles order placement and history.
+
+### authService
+Manages user authentication.
+
+### wishlistService
+Handles wishlist operations.
+
+### themeService
+Manages theme (light/dark mode).
+
+## Styling
+
+### Tailwind CSS
+Utility-first CSS framework for styling.
+
+### Dark Mode
+Configured with Tailwind's dark mode class strategy.
+
+### Responsive Design
+Mobile-first approach with responsive breakpoints:
+- `sm`: 640px
+- `md`: 768px
+- `lg`: 1024px
+- `xl`: 1280px
+
+## TypeScript
+
+Strict TypeScript configuration with:
+- Type checking
+- Interface definitions in `src/types/index.ts`
+- Props validation
+
+## Environment
+
+No environment variables needed. Configuration is done in source files.
+
+## Build Output
+
+Production build is output to the `dist/` directory:
+- Optimized and minified JavaScript
+- CSS bundled and optimized
+- Assets with content hashing
+
+## Deployment
+
+The application is served using Nginx in production. The `nginx.conf` file configures:
+- Single Page Application routing
+- Gzip compression
+- Static file serving
+
+## Dependencies
+
+Key dependencies (see `package.json` for complete list):
+- React & React DOM
+- React Router DOM
+- Tailwind CSS
+- React Hot Toast
+- TypeScript
+- Vite
+
+## Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint

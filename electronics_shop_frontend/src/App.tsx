@@ -20,12 +20,10 @@ function App() {
           {/* Core Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<ProductDetails />} />
-
           {/* SPL VARIATION POINT: User Authentication Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
-          {/* Cart Routes */}
+          {/* SPL VARIATION POINT: Order Management Routes */}{" "}
           <Route
             path="/cart"
             element={
@@ -34,8 +32,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
-          {/* SPL VARIATION POINT: Order Management Routes */}
           <Route
             path="/checkout"
             element={
@@ -60,7 +56,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
           {/* SPL VARIATION POINT: Wishlist Feature Route */}
           <Route
             path="/wishlist"

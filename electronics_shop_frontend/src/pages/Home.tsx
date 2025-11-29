@@ -143,26 +143,25 @@ export default function Home() {
     }
   };
 
-  // SPL VARIATION POINT: Product Catalog Categories
-  // Electronics variant categories
+  // SPL VARIATION POINT: Product Categories - Static combined list
+  // Categories from both electronics and toys catalogs
   const categories = [
     "All",
     "Laptops",
-    "Smartphones",
-    "Accessories",
+    "Audio",
     "Tablets",
-    "Headphones",
+    "Smartphones",
+    "Building Sets",
+    "Vehicles",
+    "Dolls",
+    "Outdoor Toys",
+    "Plush Toys",
+    "Arts & Crafts",
+    "Educational Toys",
+    "Puzzles",
+    "RC Toys",
+    "Action Figures",
   ];
-
-  // Toys variant categories (alternative)
-  // const categories = [
-  //   "All",
-  //   "Action Figures",
-  //   "Dolls",
-  //   "Board Games",
-  //   "Puzzles",
-  //   "Educational",
-  // ];
 
   if (loading) {
     return (
@@ -191,13 +190,6 @@ export default function Home() {
             Discover the latest electronics at unbeatable prices
           </p>
 
-          {/* Toys Shop Variant (alternative) */}
-          {/* <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Welcome to ToyWorld
-          </h1>
-          <p className="text-lg md:text-xl text-primary-100 mb-6">
-            Discover amazing toys for all ages at unbeatable prices
-          </p> */}
           <div className="flex gap-4">
             <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2">
               <p className="text-sm text-primary-100">Products</p>

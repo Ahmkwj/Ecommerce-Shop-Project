@@ -1,6 +1,5 @@
 const API_BASE_URL = "http://localhost:8080";
 
-// Generic GET request
 export async function apiGet<T>(endpoint: string): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${endpoint}`);
   if (!response.ok) {
@@ -9,7 +8,6 @@ export async function apiGet<T>(endpoint: string): Promise<T> {
   return await response.json();
 }
 
-// Generic POST request
 export async function apiPost<T>(endpoint: string, data?: any): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     method: "POST",
@@ -24,7 +22,6 @@ export async function apiPost<T>(endpoint: string, data?: any): Promise<T> {
   return await response.json();
 }
 
-// Generic PUT request
 export async function apiPut<T>(endpoint: string, data?: any): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     method: "PUT",
@@ -39,7 +36,6 @@ export async function apiPut<T>(endpoint: string, data?: any): Promise<T> {
   return await response.json();
 }
 
-// Generic DELETE request
 export async function apiDelete<T>(endpoint: string): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     method: "DELETE",
